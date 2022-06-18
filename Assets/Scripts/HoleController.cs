@@ -37,6 +37,7 @@ public class HoleController : MonoBehaviour
         DetermineHoleVertices(); // vertices belongs to hole circle
 
         holeVerticesCount = holeVertices.Count;
+
     }
 
     private void SetupGameData()
