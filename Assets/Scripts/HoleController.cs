@@ -49,13 +49,7 @@ public class HoleController : MonoBehaviour
 
     private void Update()
     {
-#if UNITY_EDITOR
-        //editor mouse
         GameData.isMoving = Input.GetMouseButton(0);
-#else
-        //mobile touch
-        GameData.isMoving = Input.touchCount > 0 && Input.GetTouch(0).phase = TouchPhase.Moved;
-#endif
 
         if (GameData.isMoving && !GameData.isGameOver)
         {
@@ -68,6 +62,7 @@ public class HoleController : MonoBehaviour
 
     private void MoveHoleCenter()
     {
+#if UNITY_EDITOR
         deltaX = Input.GetAxis("Mouse X");
         deltaY = Input.GetAxis("Mouse Y");
 
@@ -80,6 +75,23 @@ public class HoleController : MonoBehaviour
         updatedHoleCenter = new Vector3(clampedX, newHoleCenter.y, clampedZ);
 
         holeCenter.position = updatedHoleCenter;
+#else
+
+        Vector2 touchDelta = Input.GetTouch(0).deltaPosition;
+        
+
+        Vector3 delta = new Vector3(touchDelta.x, 0f, touchDelta.y)  * Time.deltaTime;
+
+        newHoleCenter = Vector3.Lerp(holeCenter.position, holeCenter.position + delta, movementSpeed * Time.deltaTime);
+
+        float clampedX = Mathf.Clamp(newHoleCenter.x, -referenceMesh.bounds.extents.x + holeEncloseRadius, referenceMesh.bounds.extents.x - holeEncloseRadius);
+        float clampedZ = Mathf.Clamp(newHoleCenter.z, -referenceMesh.bounds.extents.z + holeEncloseRadius, referenceMesh.bounds.extents.z - holeEncloseRadius);
+
+        updatedHoleCenter = new Vector3(clampedX, newHoleCenter.y, clampedZ);
+
+        holeCenter.position = updatedHoleCenter;
+
+#endif
     }
 
     private void UpdateHoleVerticesPosition()

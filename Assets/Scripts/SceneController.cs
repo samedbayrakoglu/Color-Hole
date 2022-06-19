@@ -18,10 +18,11 @@ public class SceneController : MonoBehaviour
         {
             Destroy(this);
         }
+
+        Application.targetFrameRate = 60;
     }
 
     #endregion
-
 
     public int GetCurrentSceneIdx()
     {

@@ -23,6 +23,8 @@ public class Level : MonoBehaviour
 
     #endregion
 
+    [SerializeField] bool isLastLevel = false;
+    [Space]
     [SerializeField] ParticleSystem winFX;
 
     [Space]
@@ -77,8 +79,18 @@ public class Level : MonoBehaviour
 
         PlayWinFX();
 
-        Invoke("LoadNextLevel", winFX.main.duration);
-        // LoadNextLevel();
+        if (!isLastLevel)
+        {
+            Invoke("LoadNextLevel", winFX.main.duration);
+        }
+        else
+        {
+            var main = winFX.main;
+
+            main.loop = true;
+
+            UIManager.Instance.GameOver();
+        }
     }
 
     public void LevelFailed()

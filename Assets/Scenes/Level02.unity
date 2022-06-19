@@ -7998,7 +7998,7 @@ MonoBehaviour:
   progressFillBar: {fileID: 886186693}
   boardColor: {r: 0.77254903, g: 0.4696969, b: 0, a: 0}
   objectColor: {r: 1, g: 1, b: 1, a: 0}
-  obstacleColor: {r: 0.5943396, g: 0.09812209, b: 0.09812209, a: 0}
+  obstacleColor: {r: 0.65882355, g: 0.011764706, b: 0, a: 1}
   boardBorderColor: {r: 0.31578258, g: 0, b: 0.5176471, a: 1}
   boardSideColor: {r: 0.77254903, g: 0.52351964, b: 0, a: 1}
   progressBarColor: {r: 1, g: 0.6341173, b: 0, a: 1}
