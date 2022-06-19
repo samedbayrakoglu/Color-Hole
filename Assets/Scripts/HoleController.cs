@@ -14,6 +14,7 @@ public class HoleController : MonoBehaviour
 
     [Space]
     [SerializeField] float movementSpeed;
+    [SerializeField] float force;
 
     private Mesh referenceMesh;
 
@@ -48,7 +49,13 @@ public class HoleController : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
+        //editor mouse
         GameData.isMoving = Input.GetMouseButton(0);
+#else
+        //mobile touch
+        GameData.isMoving = Input.touchCount > 0 && Input.GetTouch(0).phase = TouchPhase.Moved;
+#endif
 
         if (GameData.isMoving && !GameData.isGameOver)
         {
@@ -56,6 +63,7 @@ public class HoleController : MonoBehaviour
 
             UpdateHoleVerticesPosition();
         }
+
     }
 
     private void MoveHoleCenter()
@@ -102,5 +110,35 @@ public class HoleController : MonoBehaviour
                 holeVerticeOffsets.Add(referenceMesh.vertices[i] - holeCenter.position);
             }
         }
+    }
+
+
+    // Magnet
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Object" || other.gameObject.tag == "Obstacle")
+        {
+            ApplyForce(other);
+        }
+    }
+
+    private void ApplyForce(Collider other)
+    {
+        Rigidbody rBody = other.attachedRigidbody;
+
+        Vector3 holeCenterEdited = new Vector3(holeCenter.position.x, 0, holeCenter.position.z); // hole center position on XZ plane
+        Vector3 colliderEdited = new Vector3(other.transform.position.x, 0, other.transform.position.z); // collided object position on XZ plane
+
+        float distance = Vector3.Distance(holeCenterEdited, colliderEdited); // distance btw hole & object
+
+        // Vector3 forceDirection = holeCenterEdited - colliderEdited;
+        Vector3 forceDirection = holeCenter.position - other.transform.position;
+
+        if (distance <= holeEncloseRadius * 0.8f)
+        {
+            forceDirection += -Vector3.up * 100f; // apply vertical force
+        }
+
+        rBody.AddForce(forceDirection.normalized * force * Time.fixedDeltaTime);
     }
 }

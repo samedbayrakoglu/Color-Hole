@@ -6752,7 +6752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.5, b: 0.07326865, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.53839064, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7035,7 +7035,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.35555357, g: 0.8867924, b: 0.82917494, a: 0}
+  m_BackGroundColor: {r: 0.20784311, g: 0.85882354, b: 0.7931704, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -7423,7 +7423,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300002, guid: 1e16b95c00414e7418843b0daa769c92, type: 3}
-  m_Color: {r: 0.34284893, g: 0, b: 0.6415094, a: 1}
+  m_Color: {r: 0.29846376, g: 0, b: 0.5188679, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7929,7 +7929,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1e16b95c00414e7418843b0daa769c92, type: 3}
-  m_Color: {r: 0.3754994, g: 0.009211446, b: 0.6509434, a: 1}
+  m_Color: {r: 0.39692044, g: 0.028835872, b: 0.6792453, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7990,6 +7990,19 @@ MonoBehaviour:
   objectsParent: {fileID: 1210670792}
   objectsInLevel: 0
   totalObjects: 0
+  boardMaterial: {fileID: 2100000, guid: 8415d651ed8384d72847fb923a7974e2, type: 2}
+  objectMaterial: {fileID: 2100000, guid: 7f18ba42a35e6412aa186185d33df1ec, type: 2}
+  obstacleMaterial: {fileID: 2100000, guid: 7c145fb42219046a48a3f3ac0e2af8ce, type: 2}
+  boardBordersSprite: {fileID: 1357251890}
+  boardSideSprite: {fileID: 1960396897}
+  progressFillBar: {fileID: 886186693}
+  boardColor: {r: 0.44209293, g: 0, b: 0.7735849, a: 0}
+  objectColor: {r: 1, g: 1, b: 1, a: 0}
+  obstacleColor: {r: 0.5943396, g: 0.09812209, b: 0.09812209, a: 0}
+  boardBorderColor: {r: 0.29846376, g: 0, b: 0.5188679, a: 1}
+  boardSideColor: {r: 0.39692044, g: 0.028835872, b: 0.6792453, a: 1}
+  progressBarColor: {r: 1, g: 0, b: 0.53839064, a: 1}
+  cameraColor: {r: 0.20784311, g: 0.85882354, b: 0.7931704, a: 0}
 --- !u!1001 &2012826153
 PrefabInstance:
   m_ObjectHideFlags: 0
