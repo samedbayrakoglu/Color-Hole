@@ -59,6 +59,8 @@ public class Level : MonoBehaviour
         CountObjects();
 
         UpdateLevelColors();
+
+        SetupCamera();
     }
 
     private void CountObjects()
@@ -89,7 +91,7 @@ public class Level : MonoBehaviour
 
             main.loop = true;
 
-            UIManager.Instance.GameOver();
+            StartCoroutine(GameOver());
         }
     }
 
@@ -130,5 +132,21 @@ public class Level : MonoBehaviour
     private void OnValidate()
     {
         UpdateLevelColors();
+    }
+
+    private void SetupCamera()
+    {
+        // aspect ratio for 1080-1920 resolution = 0.56
+        //fov reference for 1080-1920 : 65.9
+
+        Camera.main.fieldOfView = (0.56f * 65.9f) / Camera.main.aspect;
+    }
+
+    private IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(1f);
+
+        UIManager.Instance.GameOver();
+
     }
 }
